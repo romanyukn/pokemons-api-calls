@@ -13,8 +13,8 @@ function PokemonList() {
         const pokemonObj = {};
         const pokemonInfo = await axios.get(el.url);
         pokemonObj.name = el.name;
-        pokemonObj.img = pokemonInfo.sprites.front_default;
-        pokemonObj.type = pokemonInfo.types.map(type => {type.type.name});
+        pokemonObj.img = pokemonInfo.data.sprites.front_default;
+        pokemonObj.type = pokemonInfo.data.types.map(type => type.type.name);
         pokemonsArr.push(pokemonObj); 
       }
       catch(e){
@@ -26,7 +26,7 @@ function PokemonList() {
 
   return(
     <ul>
-      {pokemons.map(el => <li>{el.name} {el.img} {el.type}</li>)}
+      {pokemons.map(el => <li>{el.name} {el.img}</li>)}
     </ul>
   )
 }
